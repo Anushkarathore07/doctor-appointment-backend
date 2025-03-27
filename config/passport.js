@@ -3,6 +3,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const Patient = require("../models/Patient");
 const Doctor = require("../models/Doctor");
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 passport.use(
   new GoogleStrategy(
@@ -11,6 +12,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:3000/api/auth/google/callback",
     },
+    
     async (accessToken, refreshToken, profile, done) => {
       try {
         let user =
